@@ -7,7 +7,7 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
     <context:component-scan base-package="hhh"/>
-    <bean id="adrs" class="hhh.Address">
+    <bean id="adrs" class="hhh.Address" scope="prototype">
         <property name="numberOfFlat" value="5"/>
         <property name="street" value="Mashtoc"/>
     </bean>
