@@ -7,4 +7,19 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
     <context:component-scan base-package="hhh"/>
+    <bean id="adrs" class="hhh.Address">
+        <property name="numberOfFlat" value="5"/>
+        <property name="street" value="Mashtoc"/>
+    </bean>
+    <bean id="person" class="hhh.Person">
+        <property name="addresses">
+            <list>
+                <ref bean="adrs"/>
+                <ref bean="adrs"/>
+                <ref bean="adrs"/>
+                <ref bean="adrs"/>
+                <ref bean="adrs"/>
+            </list>
+        </property>
+    </bean>
 </beans>
