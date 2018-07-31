@@ -9,7 +9,7 @@ import java.security.MessageDigest;
 @Component("messageDigest")
 public class MessageDigestFactoryBean implements FactoryBean<MessageDigest>, InitializingBean {
     private MessageDigest messageDigest = null;
-    private String algorithm = "SHA1";
+    private String algorithm = "MD5";
 
     @Override
     public MessageDigest getObject() throws Exception {

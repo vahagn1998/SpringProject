@@ -4,6 +4,8 @@ import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.util.StopWatch;
 
+import java.security.MessageDigest;
+
 public class Main {
     public static void main(String[] args) {
         GenericXmlApplicationContext a = new GenericXmlApplicationContext();
@@ -20,6 +22,16 @@ public class Main {
         stopWatch.stop();
         System.out.println(stopWatch.getLastTaskTimeMillis());
         p.digest("hello");
+        MessageDigestFactoryBean bean = (MessageDigestFactoryBean) a.getBean("&messageDigest");
+        try {
+            MessageDigest object = bean.getObject();
+            System.out.println(object.digest("hello".getBytes()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println();
+        MessageDigest digester = (MessageDigest) a.getBean("digester");
+        System.out.println(digester.digest("Hello World!".getBytes()));
 //        try {
 //            a.close();
 //        } catch (Exception e) {

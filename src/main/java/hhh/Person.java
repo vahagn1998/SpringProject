@@ -56,7 +56,7 @@ public class Person implements DisposableBean, BeanNameAware {
         return address;
     }
 
-    @Autowired
+    @Resource(name = "messageDigest")
     public void setDigest(MessageDigest digest) {
         this.digest = digest;
     }
