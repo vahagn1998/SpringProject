@@ -1,5 +1,6 @@
 package hhh;
 
+import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.util.StopWatch;
 
@@ -15,13 +16,14 @@ public class Main {
         for (Address address : p.getAddresses()) {
             System.out.println(address.getNumberOfFlat() + " " + address.getStreet());
         }
-        System.out.println(p.getName() + " " + p.getAddress().getStreet() + " " + p.getAddress().getNumberOfFlat());
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        System.out.println(p.getName() + " " + p.getAddress().getStreet() + " " + p.getAddress().getNumberOfFlat() + " " + p.getAge());
         stopWatch.stop();
         System.out.println(stopWatch.getLastTaskTimeMillis());
+        p.digest("hello");
+//        try {
+//            a.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 }

@@ -5,13 +5,15 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd">
+        http://www.springframework.org/schema/context/spring-context.xsd"
+        default-lazy-init="true">
     <context:component-scan base-package="hhh"/>
-    <bean id="adrs" class="hhh.Address" scope="prototype">
+    <context:annotation-config/>
+    <bean id="adrs" class="hhh.Address" destroy-method="destroy" scope="prototype">
         <property name="numberOfFlat" value="5"/>
         <property name="street" value="Mashtoc"/>
     </bean>
-    <bean id="person" class="hhh.Person">
+    <bean id="person" class="hhh.Person" destroy-method="destroy">
         <property name="addresses">
             <list>
                 <ref bean="adrs"/>
