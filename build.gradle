@@ -2,7 +2,7 @@ apply plugin: 'java'
 apply plugin: 'application'
 apply plugin: 'idea'
 
-mainClassName = 'hhh.Main'
+mainClassName = 'com.hhh.Main'
 
 repositories {
     mavenCentral()
@@ -14,9 +14,12 @@ targetCompatibility = 1.8
 dependencies {
     compile group: 'org.springframework', name: 'spring-core', version: '5.0.8.RELEASE'
     compile group: 'org.springframework', name: 'spring-context', version: '5.0.8.RELEASE'
+    compile group: 'org.springframework', name: 'spring-tx', version: '5.0.8.RELEASE'
+    compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.5.1'
 }
 
 jar {
-    baseName = 'gs-gradle'
+    baseName = 'MyApp'
     version =  '0.1.0'
+
 }

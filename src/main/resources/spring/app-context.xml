@@ -3,18 +3,20 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd"
-       default-lazy-init="true">
-    <context:component-scan base-package="hhh"/>
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd">
+    <context:component-scan base-package="com"/>
     <context:annotation-config/>
-    <bean id="adrs" class="hhh.Address" destroy-method="destroy" scope="prototype">
+    <bean id="adrs" class="com.hhh.Address" destroy-method="destroy" scope="prototype">
         <property name="numberOfFlat" value="5"/>
         <property name="street" value="Mashtoc"/>
     </bean>
-    <bean id="person" class="hhh.Person" destroy-method="destroy">
+    <bean id="person" class="com.hhh.Person" destroy-method="destroy" p:localDate="01/02/2018">
         <property name="addresses">
             <list>
                 <ref bean="adrs"/>
@@ -26,9 +28,41 @@
         </property>
     </bean>
     <bean id="shaDigestFactory"
-          class="hhh.MessageDigestFactory"
+          class="com.hhh.MessageDigestFactory"
           p:algorithmName="MD5"/>
     <bean id="digester"
         factory-bean="shaDigestFactory"
         factory-method="createInstance"/>
+
+    <bean id="a" class="com.hhh.Rrr"/>
+    <util:list id = "propertyEditorRegistrarsList">
+        <ref bean="a"/>
+    </util:list>
+    <bean id="customEditorConfigurer" class="org.springframework.beans.factory.config.CustomEditorConfigurer"
+    p:propertyEditorRegistrars-ref="propertyEditorRegistrarsList">
+        <property name="customEditors">
+            <util:map>
+                <entry key="java.time.LocalDate" value="com.hhh.LocalDateEditor"/>
+            </util:map>
+        </property>
+    </bean>
+    <bean id="builtInSample" class="com.hhh.PropertyEditorBean"
+    p:aClass="com.hhh.Person"
+    p:date="05/03/2018"
+    p:list-ref="havai"
+    p:properties="ddd"/>
+    <util:list id="havai">
+        <value>gfdgdf</value>
+        <value>gdfgfjhfg</value>
+    </util:list>
+    <util:properties id = "ddd">
+        <prop key="1">gfdgdf</prop>
+        <prop key="2">gdfgfjhfg</prop>
+    </util:properties>
+
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"
+    p:basenames-ref="basenames"/>
+    <util:list id="basenames">
+        <value>labels</value>
+    </util:list>
 </beans>

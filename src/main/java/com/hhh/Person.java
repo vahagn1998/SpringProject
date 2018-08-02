@@ -1,16 +1,18 @@
-package hhh;
+package com.hhh;
 
 import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.security.MessageDigest;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service("person")
@@ -18,15 +20,20 @@ import java.util.List;
 public class Person implements DisposableBean, BeanNameAware {
 
     private MessageDigest digest;
-    
+
     @Value("Name")
     private String name;
 
     @Value("last name")
     private String lassName;
 
+    @Value("#{systemProperties['java.io.tmpdir']}")
+    private String property;
+
     @InjectRandomInt(max = 100)
     private int age;
+
+    private LocalDate localDate;
 
     private Address address;
 
@@ -42,6 +49,18 @@ public class Person implements DisposableBean, BeanNameAware {
 
     public String getName() {
         return name;
+    }
+
+    public String getProperty() {
+        return property;
+    }
+
+    public LocalDate getLocalDate() {
+        return localDate;
+    }
+
+    public void setLocalDate(LocalDate localDate) {
+        this.localDate = localDate;
     }
 
     public String getLassName() {
@@ -62,7 +81,7 @@ public class Person implements DisposableBean, BeanNameAware {
     }
 
     public void digest(String msg) {
-        System.out.println( "Using alogrithm: " + digest.getAlgorithm());
+        System.out.println("Using alogrithm: " + digest.getAlgorithm());
         digest.reset();
         byte[] bytes = msg.getBytes();
         byte[] out = digest.digest(bytes);
@@ -76,7 +95,7 @@ public class Person implements DisposableBean, BeanNameAware {
 
     @PostConstruct
     public void init() {
-        if(address.getStreet() != null) {
+        if (address.getStreet() != null) {
             System.out.println("lava");
         } else {
             System.out.println("vata");

@@ -1,4 +1,4 @@
-package hhh;
+package com.hhh;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanClassLoaderAware;
@@ -9,12 +9,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.support.AbstractApplicationContext;
-import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PreDestroy;
-import java.util.ArrayList;
-import java.util.Spliterator;
 
 @Component("address")
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
@@ -57,7 +54,7 @@ public class Address implements ApplicationContextAware, BeanClassLoaderAware, B
     public void setBeanClassLoader(ClassLoader classLoader) {
         System.out.println(numberOfFlat++);
         try {
-            Class<?> aClass = classLoader.loadClass("hhh.Person");
+            Class<?> aClass = classLoader.loadClass("com.hhh.Person");
             Object o1 = aClass.newInstance();
             if (o1 instanceof Person) {
                 Person o = (Person) o1;

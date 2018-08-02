@@ -1,4 +1,4 @@
-package hhh;
+package com.hhh;
 
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;
