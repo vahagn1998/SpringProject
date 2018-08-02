@@ -7,10 +7,8 @@ public class Main {
         MessageWriter messageWriter = new MessageWriter();
 
         ProxyFactory proxyFactory = new ProxyFactory();
-        proxyFactory.addAdvice(new MessageDecorator());
+        proxyFactory.addAdvice(new SimpleBeforeAdvice());
         proxyFactory.setTarget(messageWriter);
-
-        messageWriter.write();
 
         MessageWriter proxy = (MessageWriter) proxyFactory.getProxy();
         proxy.write();
