@@ -12,11 +12,11 @@
         http://www.springframework.org/schema/util/spring-util.xsd">
     <context:component-scan base-package="com"/>
     <context:annotation-config/>
-    <bean id="adrs" class="com.hhh.Address" destroy-method="destroy" scope="prototype">
+    <bean id="adrs" class="IoC.hhh.Address" destroy-method="destroy" scope="prototype">
         <property name="numberOfFlat" value="5"/>
         <property name="street" value="Mashtoc"/>
     </bean>
-    <bean id="person" class="com.hhh.Person" destroy-method="destroy" p:localDate="01/02/2018">
+    <bean id="person" class="IoC.hhh.Person" destroy-method="destroy" p:localDate="01/02/2018">
         <property name="addresses">
             <list>
                 <ref bean="adrs"/>
@@ -28,13 +28,13 @@
         </property>
     </bean>
     <bean id="shaDigestFactory"
-          class="com.hhh.MessageDigestFactory"
+          class="IoC.hhh.MessageDigestFactory"
           p:algorithmName="MD5"/>
     <bean id="digester"
         factory-bean="shaDigestFactory"
         factory-method="createInstance"/>
 
-    <bean id="a" class="com.hhh.Rrr"/>
+    <bean id="a" class="IoC.hhh.Rrr"/>
     <util:list id = "propertyEditorRegistrarsList">
         <ref bean="a"/>
     </util:list>
@@ -42,12 +42,12 @@
     p:propertyEditorRegistrars-ref="propertyEditorRegistrarsList">
         <property name="customEditors">
             <util:map>
-                <entry key="java.time.LocalDate" value="com.hhh.LocalDateEditor"/>
+                <entry key="java.time.LocalDate" value="IoC.hhh.LocalDateEditor"/>
             </util:map>
         </property>
     </bean>
-    <bean id="builtInSample" class="com.hhh.PropertyEditorBean"
-    p:aClass="com.hhh.Person"
+    <bean id="builtInSample" class="IoC.hhh.PropertyEditorBean"
+    p:aClass="IoC.hhh.Person"
     p:date="05/03/2018"
     p:list-ref="havai"
     p:properties="ddd"/>
