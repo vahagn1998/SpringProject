@@ -8,8 +8,8 @@ import org.springframework.core.env.Environment;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration(value = "conf")
-@ImportResource(value = "classpath:../../resources/main/spring/app-context.xml")
-@PropertySource(value = "classpath:../../resources/main/spring/message.properties")
+@ImportResource(value = "classpath:../../resources/main/IoC/app-context.xml")
+@PropertySource(value = "classpath:../../resources/main/IoC/message.properties")
 @ComponentScan(basePackages = {"com"})
 @EnableTransactionManagement
 //@Profile(value = "conf")

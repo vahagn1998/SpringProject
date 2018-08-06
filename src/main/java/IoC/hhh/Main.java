@@ -7,7 +7,7 @@ public class Main {
 //    public static void main(String[] args) {
 //        GenericXmlApplicationContext a = new GenericXmlApplicationContext();
 //        StopWatch stopWatch = new StopWatch();
-//        a.load("classpath:../../resources/main/spring/app-context.xml");
+//        a.load("classpath:../../resources/main/IoC/app-context.xml");
 //        a.refresh();
 //        stopWatch.start();
 //        Person p = (Person) a.getBean("person");
@@ -38,7 +38,7 @@ public class Main {
 
 //    public static void main(String[] args) {
 //        GenericXmlApplicationContext a = new GenericXmlApplicationContext();
-//        a.load("classpath:../../resources/main/spring/app-context.xml");
+//        a.load("classpath:../../resources/main/IoC/app-context.xml");
 //        a.refresh();
 //        PropertyEditorBean builtInSample = a.getBean("builtInSample", PropertyEditorBean.class);
 //        System.out.println(builtInSample.getaClass().getName());
@@ -57,7 +57,7 @@ public class Main {
 
 //    public static void main(String[] args) {
 //        GenericXmlApplicationContext a = new GenericXmlApplicationContext();
-//        a.load("classpath:../../resources/main/spring/app-context.xml");
+//        a.load("classpath:../../resources/main/IoC/app-context.xml");
 //        a.refresh();
 //        System.out.println(a.getMessage("hello", null, Locale.ENGLISH));
 //        System.out.println(a.getMessage("hello", null, new Locale("am", "AM")));
@@ -112,7 +112,7 @@ public class Main {
 //    }
 
     public static void main(String[] args) {
-        GenericGroovyApplicationContext applicationContext = new GenericGroovyApplicationContext("classpath:../../resources/main/spring/Config.groove");
+        GenericGroovyApplicationContext applicationContext = new GenericGroovyApplicationContext("classpath:../../resources/main/IoC/Config.groove");
         Contact contact = applicationContext.getBean("contact", Contact.class);
         System.out.println(contact.getAge() + " " + contact.getFirstName() + " " + contact.getLastName());
     }
