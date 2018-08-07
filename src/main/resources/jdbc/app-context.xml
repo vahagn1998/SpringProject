@@ -12,14 +12,9 @@
         http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
     <context:component-scan base-package="jdbc"/>
     <context:annotation-config/>
-    <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"-->
-    <!--p:driverClassName="${jdbc.driverClassName}"-->
-    <!--p:url="${jdbc.url}"-->
-    <!--p:username="${jdbc.username}"-->
-    <!--p:password="${jdbc.password}"/>-->
-    <!--<context:property-placeholder location="classpath:jdbc/jdbc.properties"/>-->
-    <jdbc:embedded-database id="dataSource" type="H2">
-        <jdbc:script location="jdbc/ddl.sql"/>
-        <jdbc:script location="jdbc/dml.sql"/>
-    </jdbc:embedded-database>
+    <!--<jdbc:embedded-database id="dataSource" type="H2">-->
+        <!--<jdbc:script location="jdbc/ddl.sql"/>-->
+        <!--<jdbc:script location="jdbc/dml.sql"/>-->
+    <!--</jdbc:embedded-database>-->
+    <import resource="classpath:jdbc/datasource-dbcp.xml"/>
 </beans>
