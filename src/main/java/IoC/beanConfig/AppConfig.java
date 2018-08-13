@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @PropertySource(value = "classpath:../../resources/main/IoC/message.properties")
 @ComponentScan(basePackages = {"com"})
 @EnableTransactionManagement
-//@Profile(value = "conf")
+//@Profile(value = "dev")
 public class AppConfig {
     private final Environment environment;
 
