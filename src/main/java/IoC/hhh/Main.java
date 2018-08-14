@@ -1,7 +1,11 @@
 package IoC.hhh;
 
+import IoC.Events.Publisher;
 import IoC.groove.Contact;
 import org.springframework.context.support.GenericGroovyApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
+
+import java.util.Locale;
 
 public class Main {
 //    public static void main(String[] args) {

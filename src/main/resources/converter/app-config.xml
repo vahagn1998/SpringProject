@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+    <context:annotation-config/>
+    <!--<context:property-placeholder location="classpath:converter/application.properties"/>-->
+    <!--<bean id="customEditorConfigurer" class="org.springframework.beans.factory.config.CustomEditorConfigurer"-->
+          <!--p:propertyEditorRegistrars-ref="propertyEditorRegistrarsList"/>-->
+    <!--<util:list id="propertyEditorRegistrarsList">-->
+        <!--<bean class="converter.DateTimeEditorRegistrar">-->
+            <!--<constructor-arg value="${date.format.pattern}"/>-->
+        <!--</bean>-->
+    <!--</util:list>-->
+    <bean id="chris" class="converter.Contact"
+          p:firstName="Chris"
+          p:lastName="Schaefer"
+          p:birthDate="1981-05-03"
+          p:personalSite="http://facebook.com"/>
+    <bean id="vahagn" class="converter.Contact"
+          p:firstName="Vahagn"
+          p:lastName="Kostandyan"
+          p:birthDate="1998-08-18"
+          p:personalSite="http://google.com"/>
+    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="converter.StringToDateTimeConverter"/>
+            </set>
+        </property>
+    </bean>
+</beans>

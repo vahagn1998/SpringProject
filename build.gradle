@@ -2,7 +2,7 @@ apply plugin: 'java'
 apply plugin: 'application'
 apply plugin: 'idea'
 
-mainClassName = 'transaction.Main'
+mainClassName = 'converter.validators.Main'
 
 repositories {
     mavenCentral()
@@ -31,6 +31,9 @@ dependencies {
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.1'
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
     compile group: 'com.atomikos', name: 'transactions-jdbc', version: '4.0.6'
+    compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+    compile group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.0.12.Final'
+    compile group: 'joda-time', name: 'joda-time', version: '2.10'
 }
 
 jar {
