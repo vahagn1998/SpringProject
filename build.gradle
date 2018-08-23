@@ -2,7 +2,7 @@ apply plugin: 'java'
 apply plugin: 'application'
 apply plugin: 'idea'
 
-mainClassName = 'scheduling.Main'
+mainClassName = 'remote.Main'
 
 repositories {
     mavenCentral()
@@ -46,6 +46,7 @@ dependencies {
     compile group: 'org.springframework.security', name: 'spring-security-web', version: '5.0.7.RELEASE'
     compile group: 'org.springframework.security', name: 'spring-security-config', version: '5.0.7.RELEASE'
     compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.6'
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
 }
 
 jar {

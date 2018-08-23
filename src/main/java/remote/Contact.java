@@ -1,14 +1,12 @@
 package remote;
 
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
 
 @Entity
-@NamedQueries({
-        @NamedQuery(name = "Contact.findAll", query = "select c from Contact c"),
-        @NamedQuery(name = "Contact.countAll", query = "select count(c) from Contact c")
-})
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"first_name", "last_name"}))
 public class Contact implements Serializable {
     private static final long serialVersionUID = 114146515415612319L;
@@ -18,14 +16,14 @@ public class Contact implements Serializable {
     private Long id;
 
     @Column(nullable = false, name = "first_name")
-    private String firsName;
+    private String firstName;
 
     @Column(nullable = false, name = "last_name")
     private String lastName;
 
-    @Temporal(TemporalType.DATE)
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     @Column(name = "birth_date")
-    private Date birthDate;
+    private DateTime birthDate;
 
     @Version
     @Column(name = "version", nullable = false, columnDefinition = "0")
@@ -39,12 +37,12 @@ public class Contact implements Serializable {
         this.id = id;
     }
 
-    public String getFirsName() {
-        return firsName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirsName(String firsName) {
-        this.firsName = firsName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
@@ -55,11 +53,11 @@ public class Contact implements Serializable {
         this.lastName = lastName;
     }
 
-    public Date getBirthDate() {
+    public DateTime getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(DateTime birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -69,5 +67,11 @@ public class Contact implements Serializable {
 
     public void setVersion(int version) {
         this.version = version;
+    }
+
+    @Override
+    public String toString() {
+        return "Contact - Id: " + id + ", First name: " + firstName
+                + ", Last name: " + lastName + ", Birthday: " + birthDate;
     }
 }
