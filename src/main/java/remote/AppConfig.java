@@ -2,38 +2,28 @@ package remote;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
-import org.springframework.context.event.EventListener;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.context.ContextLoaderListener;
-import org.springframework.web.context.support.HttpRequestHandlerServlet;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.persistence.EntityManagerFactory;
 import java.util.Properties;
 
 @Configuration
 @ComponentScan(basePackages = "remote")
-@PropertySource(value = "classpath:../../resources/main/jdbc/jdbc.properties")
+@PropertySource(value = "classpath:remote/jdbc.properties")
 @EnableJpaRepositories(basePackages = "remote")
 @EnableTransactionManagement(proxyTargetClass = true)
-@EnableWebMvc
-public class AppConfig implements WebMvcConfigurer {
+public class AppConfig {
     private final Environment environment;
-    private final ContactService contactService;
 
     @Autowired
-    public AppConfig(Environment environment, ContactService contactService) {
+    public AppConfig(Environment environment) {
         this.environment = environment;
-        this.contactService = contactService;
     }
 
     @Bean
@@ -53,7 +43,7 @@ public class AppConfig implements WebMvcConfigurer {
         return jpaTransactionManager;
     }
 
-    @Bean
+    @Bean("entityManagerFactory")
     public LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean() {
         LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         localContainerEntityManagerFactoryBean.setDataSource(dataSource());
@@ -63,16 +53,7 @@ public class AppConfig implements WebMvcConfigurer {
         return localContainerEntityManagerFactoryBean;
     }
 
-    @Bean("contactExporter")
-    public HttpInvokerServiceExporter httpInvokerServiceExporter() {
-        HttpInvokerServiceExporter httpInvokerServiceExporter = new HttpInvokerServiceExporter();
-        httpInvokerServiceExporter.setService(contactService);
-        httpInvokerServiceExporter.setServiceInterface(ContactService.class);
-        return httpInvokerServiceExporter;
-    }
-
-    @Bean("entityManagerFactory")
-    public EntityManagerFactory entityManagerFactory() {
+    private EntityManagerFactory entityManagerFactory() {
         return localContainerEntityManagerFactoryBean().getObject();
     }
 

@@ -1,4 +1,4 @@
-package remote;
+package remote.contact;
 
 import java.util.List;
 

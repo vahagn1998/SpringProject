@@ -1,4 +1,4 @@
-package remote;
+package remote.contact;
 
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;

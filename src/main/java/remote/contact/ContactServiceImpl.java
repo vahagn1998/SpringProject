@@ -1,4 +1,4 @@
-package remote;
+package remote.contact;
 
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
