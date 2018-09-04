@@ -1,10 +1,14 @@
 package remote.contact;
 
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.filter.DelegatingFilterProxy;
+import org.springframework.web.filter.RequestContextFilter;
 import org.springframework.web.servlet.support.AbstractDispatcherServletInitializer;
 import remote.AppConfig;
 
+import javax.servlet.Filter;
 import javax.servlet.ServletRegistration;
 
 public class ContactAbstractDispatcherServletInitializer extends AbstractDispatcherServletInitializer {
@@ -17,7 +21,7 @@ public class ContactAbstractDispatcherServletInitializer extends AbstractDispatc
 
     @Override
     protected String[] getServletMappings() {
-        return new String[]{"/findAll"};
+        return new String[]{"/contact/listData", "/contact/1"};
     }
 
     @Override
@@ -28,5 +32,14 @@ public class ContactAbstractDispatcherServletInitializer extends AbstractDispatc
     @Override
     protected String getServletName() {
         return "contact";
+    }
+
+    @Override
+    protected Filter[] getServletFilters() {
+        FilterRegistrationBean<Filter> registrationBean = new FilterRegistrationBean<>();
+        registrationBean.setFilter(new RequestContextFilter());
+        registrationBean.setName("springSecurityFilterChain");
+        registrationBean.addUrlPatterns("/contact/*");
+        return new Filter[]{registrationBean.getFilter()};
     }
 }

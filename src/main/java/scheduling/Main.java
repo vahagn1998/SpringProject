@@ -8,7 +8,7 @@ import java.util.concurrent.Future;
 public class Main {
     public static void main(String[] args) {
         GenericXmlApplicationContext applicationContext =
-                new GenericXmlApplicationContext("classpath:../../resources/main/scheduling/task.xml");
+                new GenericXmlApplicationContext("classpath:../resources/scheduling/task.xml");
         AsyncService asyncService = applicationContext.getBean("asyncService", AsyncService.class);
         for (int i = 0; i < 5; i++) {
             asyncService.asyncTask();
