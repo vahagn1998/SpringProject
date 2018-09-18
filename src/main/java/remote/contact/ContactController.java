@@ -13,12 +13,10 @@ import java.util.List;
 public class ContactController {
 
     private final ContactService contactService;
-    private final RestTemplate restTemplate;
 
     @Autowired
-    public ContactController(ContactService contactService, RestTemplate restTemplate) {
+    public ContactController(ContactService contactService) {
         this.contactService = contactService;
-        this.restTemplate = restTemplate;
     }
 
     @GetMapping(value = "/findAll")

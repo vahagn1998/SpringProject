@@ -27,6 +27,7 @@ public class AppConfig {
     }
 
     @Bean
+    @Profile("dev")
     public BasicDataSource dataSource() {
         BasicDataSource basicDataSource = new BasicDataSource();
         basicDataSource.setDriverClassName(environment.getProperty("jdbc.driverClassName"));
