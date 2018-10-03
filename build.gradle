@@ -5,8 +5,9 @@ plugins {
 apply plugin: 'java'
 apply plugin: 'application'
 apply plugin: 'idea'
+apply plugin: 'groovy'
 
-mainClassName = 'script.groovyInSpring.Main'
+mainClassName = 'remote.Main'
 
 repositories {
     mavenCentral()
@@ -64,7 +65,7 @@ dependencies {
     testCompile group: 'org.springframework', name: 'spring-test', version: '5.0.9.RELEASE'
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.3.1'
     compile group: 'org.dbunit', name: 'dbunit', version: '2.5.4'
-    compile group: 'org.apache.poi', name: 'poi', version: '4.0.0'
+    compile group: 'org.apache.poi', name: 'poi', version: '3.17'
     compile group: 'javax.el', name: 'javax.el-api', version: '3.0.0'
 
 }

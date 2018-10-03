@@ -19,6 +19,11 @@ public class ContactController {
         this.contactService = contactService;
     }
 
+    @RequestMapping(path = "/test", method = RequestMethod.GET)
+    public String test() {
+        return "test";
+    }
+
     @GetMapping(value = "/findAll")
     public String findAll(Model model) {
         List<Contact> all = contactService.findAll();

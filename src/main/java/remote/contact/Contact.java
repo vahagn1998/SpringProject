@@ -26,8 +26,8 @@ public class Contact implements Serializable {
     private DateTime birthDate;
 
     @Version
-    @Column(name = "version", nullable = false, columnDefinition = "0")
-    private int version;
+    @Column(name = "version", columnDefinition = "1")
+    private Integer version;
 
     public Long getId() {
         return id;
@@ -61,11 +61,11 @@ public class Contact implements Serializable {
         this.birthDate = birthDate;
     }
 
-    public int getVersion() {
+    public Integer getVersion() {
         return version;
     }
 
-    public void setVersion(int version) {
+    public void setVersion(Integer version) {
         this.version = version;
     }
 

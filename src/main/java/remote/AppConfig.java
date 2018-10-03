@@ -2,6 +2,7 @@ package remote;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -9,24 +10,28 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.context.WebApplicationContext;
 
 import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
 @ComponentScan(basePackages = "remote")
-@PropertySource(value = "classpath:remote/jdbc.properties")
+@PropertySource(value = "classpath:META-INF/remote/jdbc.properties")
 @EnableJpaRepositories(basePackages = "remote")
 @EnableTransactionManagement(proxyTargetClass = true)
 public class AppConfig {
     private final Environment environment;
+    private final WebApplicationContext applicationContext;
 
     @Autowired
-    public AppConfig(Environment environment) {
+    public AppConfig(Environment environment, WebApplicationContext applicationContext) {
         this.environment = environment;
+        this.applicationContext = applicationContext;
     }
 
-    @Bean
+    @Bean("datasource")
     @Profile("dev")
     public BasicDataSource dataSource() {
         BasicDataSource basicDataSource = new BasicDataSource();
@@ -47,7 +52,7 @@ public class AppConfig {
     @Bean("entityManagerFactory")
     public LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean() {
         LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-        localContainerEntityManagerFactoryBean.setDataSource(dataSource());
+        localContainerEntityManagerFactoryBean.setDataSource(applicationContext.getBean("datasource", DataSource.class));
         localContainerEntityManagerFactoryBean.setJpaProperties(properties());
         localContainerEntityManagerFactoryBean.setPackagesToScan("remote");
         localContainerEntityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());

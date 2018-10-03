@@ -32,6 +32,11 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
+    public Contact findByFirstNameAndLastName(String firstName, String lastName) {
+        return contactRepository.findByFirstNameAndLastName(firstName, lastName);
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public Contact findById(Long id) {
         return contactRepository.findById(id).orElse(null);
